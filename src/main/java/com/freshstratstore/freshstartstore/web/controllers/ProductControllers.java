@@ -19,7 +19,7 @@ import com.freshstratstore.freshstartstore.doa.entities.Products;
 import com.freshstratstore.freshstartstore.web.models.request.ProductsForm;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/products")
 public class ProductControllers {
 
     private static List<Products> products = new ArrayList<Products>();
@@ -36,34 +36,6 @@ public class ProductControllers {
         if (this.products.isEmpty())
             return new ResponseEntity<>("list product is empty", HttpStatus.NO_CONTENT);
         return new ResponseEntity<>(this.products, HttpStatus.OK);
-    }
-
-    @GetMapping("{id}")
-    public ResponseEntity<Object> getProductById(@PathVariable("id") Long id) {
-        /*
-         * Product productFound=this.findProductById(id);
-         * 
-         * if(productFound!=null){
-         * return new ResponseEntity<>(productFound,HttpStatus.OK);
-         * }
-         * return new ResponseEntity<>("product not found", HttpStatus.NOT_FOUND);
-         */
-        try {
-            Products productFound = this.findProductById(id);
-            return new ResponseEntity<>(productFound, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("product not found", HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @GetMapping("/code/{code}")
-    public ResponseEntity<Object> getProductByCode(@PathVariable("code") String code) {
-        try {
-            Products productFound = this.findProductByCode(code);
-            return new ResponseEntity<>(productFound, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("product not found", HttpStatus.NOT_FOUND);
-        }
     }
 
     @GetMapping("/sorted")
