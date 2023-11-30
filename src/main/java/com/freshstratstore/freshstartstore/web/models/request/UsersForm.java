@@ -1,5 +1,7 @@
 package com.freshstratstore.freshstartstore.web.models.request;
 
+import com.freshstratstore.freshstartstore.doa.entities.Roles;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,5 +16,5 @@ public class UsersForm {
     private String password;
     private String phone;
     private String gendre;
-
+    private Roles role;
 }

@@ -23,11 +23,14 @@ public class UserControllers {
     private static List<Users> users = new ArrayList<Users>();
 
     private static long idCount = 0L;
-    static {
-        users.add(new Users(++idCount, "user 1", "hello@gmail.com", "azer123", "90128208", "male"));
-        users.add(new Users(++idCount, "user 2", "hello@gmail.com", "azer1234", "90129208", "male"));
-        users.add(new Users(++idCount, "user 3", "hello@gmail.com", "azer12345", "90127208", "female"));
-    }
+    // static {
+    // users.add(new Users(++idCount, "user 1", "hello@gmail.com", "azer123",
+    // "90128208", "male", "ADMIN"));
+    // users.add(new Users(++idCount, "user 2", "hello@gmail.com", "azer1234",
+    // "90129208", "male", "USER"));
+    // users.add(new Users(++idCount, "user 3", "hello@gmail.com", "azer12345",
+    // "90127208", "female", "USER"));
+    // }
 
     @GetMapping("/")
     public ResponseEntity<Object> getAllUsers() {
@@ -39,7 +42,7 @@ public class UserControllers {
     @PostMapping("/")
     public ResponseEntity<Object> addUser(@RequestBody() UsersForm userForm) {
         this.users.add(new Users(++idCount, userForm.getName(), userForm.getEmail(),
-                userForm.getPassword(), userForm.getPhone(), userForm.getGendre()));
+                userForm.getPassword(), userForm.getPhone(), userForm.getGendre(), userForm.getRole()));
         return new ResponseEntity<>("User is created !", HttpStatus.CREATED);
     }
 
