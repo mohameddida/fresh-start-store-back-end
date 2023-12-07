@@ -1,13 +1,8 @@
-FROM openjdk:17-jdk
+FROM maven:3.8.5-openjdk-17 AS build
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Set the working directory in the container
-WORKDIR /
-
-# Copy the JAR file into the container
-COPY target/freshstartapi.jar ./
-
-# Expose the port your app runs on
+FROM openjdk:17.0.1-jdk-slim
+COPY --from=build /target/freshstartapi.jar freshstartapi.jar
 EXPOSE 8080
-
-# Command to run the Spring Boot application
-ENTRYPOINT ["java", "-jar", "freshstartapi.jar"]
+ENTRYPOINT [ "java","-jar","freshstartapi.jar" ]
