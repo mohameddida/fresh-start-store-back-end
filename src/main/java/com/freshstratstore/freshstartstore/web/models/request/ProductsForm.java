@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
+
 public class ProductsForm {
     private String code;
     private String name;

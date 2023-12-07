@@ -1,5 +1,11 @@
 package com.freshstratstore.freshstartstore.services;
 
-public interface JWTSevices {
+import org.springframework.security.core.userdetails.UserDetails;
 
+public interface JWTSevices {
+    String extractUsername(String token);
+
+    String generateToken(UserDetails userDetails);
+
+    Boolean validateToken(String token, UserDetails userDetails);
 }
